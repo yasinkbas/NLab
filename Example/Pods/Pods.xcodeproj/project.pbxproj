@@ -13,6 +13,7 @@
 		68EF950B1FFB5913E23921654F532B9C /* NLab-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C6C30DCE1D6A313A52799DDB9FC8B6D /* NLab-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		905B03FBFCDEA4DEC1655F243A893F72 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		C238FF3324AF91FF00B2C416 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = C238FF3224AF91FF00B2C416 /* .gitkeep */; };
+		C238FF3524AF935900B2C416 /* NLab.swift in Sources */ = {isa = PBXBuildFile; fileRef = C238FF3424AF935900B2C416 /* NLab.swift */; };
 		C4D8F5CB727B07D65A10B02AF9D54044 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		D7928ADD38A716289E3EA21555FC833A /* Pods-NLab_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 02F6FAE31BD5AC11F5C0E2866680ECCA /* Pods-NLab_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E43D60D150FCA7DD33F15148C3560ADA /* Pods-NLab_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E9568D4E53DAA4C9B7987E036A86756D /* Pods-NLab_Example-dummy.m */; };
@@ -59,6 +60,7 @@
 		B41D0418D076DA1DA31623A3033A8E07 /* NLab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NLab.debug.xcconfig; sourceTree = "<group>"; };
 		B6AA692C888159E97E0D974AFE32DBFB /* Pods-NLab_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NLab_Example-Info.plist"; sourceTree = "<group>"; };
 		C238FF3224AF91FF00B2C416 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		C238FF3424AF935900B2C416 /* NLab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLab.swift; sourceTree = "<group>"; };
 		C684AD1F3FBA42963F419EB47C33E601 /* Pods-NLab_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NLab_Example.release.xcconfig"; sourceTree = "<group>"; };
 		CA233D8EB9B4059912127B068BE7A6CD /* Pods-NLab_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NLab_Tests-Info.plist"; sourceTree = "<group>"; };
 		CAB103B11697A8E875EA4D286379E9B4 /* NLab.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NLab.release.xcconfig; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				C238FF3224AF91FF00B2C416 /* .gitkeep */,
+				C238FF3424AF935900B2C416 /* NLab.swift */,
 			);
 			name = Classes;
 			path = NLab/Classes;
@@ -326,6 +329,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1100;
+				TargetAttributes = {
+					1ED210AB9BE23FFE2D39BE7DFD511366 = {
+						LastSwiftMigration = 1200;
+					};
+				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -393,6 +401,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C238FF3524AF935900B2C416 /* NLab.swift in Sources */,
 				60204FEF4FA38E7B38EC329F8AAF6E59 /* NLab-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,6 +462,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CAB103B11697A8E875EA4D286379E9B4 /* NLab.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -485,6 +495,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B41D0418D076DA1DA31623A3033A8E07 /* NLab.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -505,6 +516,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
