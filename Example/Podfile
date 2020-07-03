@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'NLab_Example' do
+  pod 'NLab', :path => '../'
+
+  target 'NLab_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
