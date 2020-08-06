@@ -11,4 +11,10 @@ import Foundation
 public protocol HTTPUtilizableRoute: HTTPBasicRoute, HTTPRequestable {   
     var options: [NLClientOption] { get set }
     var configuration: URLSessionConfiguration { get set }
+    
+    var and: Self { get }
+}
+
+extension HTTPUtilizableRoute {
+    public var and: Self { self }
 }

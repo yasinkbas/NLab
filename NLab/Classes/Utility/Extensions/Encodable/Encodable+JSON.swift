@@ -9,6 +9,6 @@
 import Foundation
 
 extension Encodable {
-    /// Encodes data if it can
+    /// Encodes data if it is possible or returns nil
     func toJSONData() -> Data? { try? JSONEncoder().encode(self) }
 }

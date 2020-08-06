@@ -9,7 +9,7 @@
 import Foundation
 
 extension Optional {
-    /// helper function for minimizing unwrap
+    /// helper function for minimizing `if let` unwrap
     func unwrap(_ closure: (Wrapped) -> Void) {
         guard let self = self else { return }
         closure(self)

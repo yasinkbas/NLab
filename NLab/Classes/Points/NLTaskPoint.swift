@@ -111,10 +111,6 @@ public final class NLTaskPoint<Output: Decodable, Body: Encodable>: NLPoint, NLT
         return self
     }
     
-    public func buildAndDirect() -> NLTaskDirector<Output, Body> {
-        build().direct()
-    }
-    
     public func build() -> NLTaskRoute<Output, Body> {
         NLTaskRoute(
             path: self.path ,
