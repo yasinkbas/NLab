@@ -6,13 +6,6 @@
 //  Copyright © 2020 Yasin Akbaş. All rights reserved.
 //
 
-//typealias Body = [String:Any]
-//typealias Parameters = [String: Any]
-//
-//typealias DataErrorResult = (Data?, Error?) -> Void
-//typealias DataTaskResult = (Data?, URLResponse?, Error?) -> Void
-//typealias DecodableResult<T: Decodable> = (T?, Error?) -> Void
-
 import Foundation
 
 public typealias DataTask = URLSessionDataTask
@@ -48,5 +41,4 @@ enum EmptyHandler {
 }
 
 /// A blank codable type, use for passing generic parameter
-public final class Empty {}
-extension Empty: Codable {}
+public final class Empty: Codable { }
