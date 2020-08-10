@@ -368,8 +368,8 @@
 		C23CAEC724CF511200F56F86 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				C23CAEC824CF511200F56F86 /* NLUploadRequest.swift */,
 				C23CAEC924CF511200F56F86 /* NLTaskRequest.swift */,
+				C23CAEC824CF511200F56F86 /* NLUploadRequest.swift */,
 				C23CAECA24CF511200F56F86 /* NLDownloadRequest.swift */,
 			);
 			path = Requests;
@@ -386,8 +386,8 @@
 		C23CAECD24CF511300F56F86 /* Points */ = {
 			isa = PBXGroup;
 			children = (
-				C23CAECE24CF511300F56F86 /* NLUploadPoint.swift */,
 				C23CAECF24CF511300F56F86 /* NLTaskPoint.swift */,
+				C23CAECE24CF511300F56F86 /* NLUploadPoint.swift */,
 				C23CAED024CF511300F56F86 /* NLDownloadPoint.swift */,
 			);
 			path = Points;
@@ -404,9 +404,9 @@
 		C23CAED324CF511300F56F86 /* Routers */ = {
 			isa = PBXGroup;
 			children = (
+				C23CAED624CF511300F56F86 /* NLTaskRoute.swift */,
 				C23CAED424CF511300F56F86 /* NLUploadRoute.swift */,
 				C23CAED524CF511300F56F86 /* NLDownloadRoute.swift */,
-				C23CAED624CF511300F56F86 /* NLTaskRoute.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";

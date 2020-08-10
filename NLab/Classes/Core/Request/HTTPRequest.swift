@@ -30,10 +30,6 @@ public class HTTPRequest<Task: URLSessionTask>: HTTPRequestProtocol {
     var client: NLClient
     var options: [NLClientOption]
     
-//    var onError: OptionalErrorHandler = nil
-////    var onData: OptionalDataHandler<Output> = nil
-//    var onResponse: OptionalResponseHandler = nil
-    
     var handler: RequestHandler?
     
     required init(client: NLClient, task: Task, options: [NLClientOption] = []) {

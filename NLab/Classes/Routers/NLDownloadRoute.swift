@@ -8,7 +8,7 @@
 
 import Foundation
 
-// TODO: update specific to download
+// <disabled> for beta version of library
 //public struct NLDownloadRoute: HTTPUtilizableRoute {
 //    public var path: String
 //    public var client: HTTPClient

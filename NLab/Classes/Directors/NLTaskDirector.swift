@@ -15,7 +15,7 @@ protocol NLTaskDirectorProtocol {
 // TODO: update specific to default
 // Default director
 public final class NLTaskDirector<Output: Decodable, Body: Encodable>: HTTPDirector<DataTask, Output, NLTaskRequest>, NLTaskDirectorProtocol {
-    
+    // <disabled> for beta version of library
 //    public func start() {
 //        let request = client.defaultTask(
 //            with: urlRequest,

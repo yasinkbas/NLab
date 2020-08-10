@@ -8,7 +8,7 @@
 
 import Foundation
 
-// TODO: update specific to upload
+// <disabled> for beta version of library
 //public struct NLUploadRoute: HTTPUtilizableRoute {
 //    public var path: String
 //    public var data: Data?

@@ -8,6 +8,7 @@
 
 import Foundation
 
+// <disabled> for beta version of library
 //protocol NLDownloadPointProtocol {
 //    associatedtype Input = Encodable
 //    

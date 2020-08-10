@@ -11,7 +11,8 @@ import Foundation
 //protocol UploadDirectorProtocol {
 //    
 //}
-// TODO: update specific to upload
+
+// <disabled> for beta version of library
 //public final class NLUploadDirector<Output: Decodable>: HTTPDirector<UploadTask, Output, NLUploadRequest>, UploadDirectorProtocol {
     
 //    public func start() {

@@ -14,6 +14,7 @@ protocol NLTaskRequestProtocol { }
 // TODO: move onData, onError, onResponse functions to here
 // TODO: update specific to default
 public class NLTaskRequest: HTTPRequest<DataTask>, NLTaskRequestProtocol {
+    // <disabled> for beta version of library
 //    func onData() {
 //        guard let task = task as? URLSessionDataTask else { return }
 //        

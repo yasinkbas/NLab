@@ -12,7 +12,7 @@ import Foundation
 //    
 //}
 
-// TODO: update specific to download
+// <disabled> for beta version of library
 //public final class NLDownloadDirector<Output: Decodable>: HTTPDirector<DownloadTask, Output, NLDownloadRequest>, DownloadDirectorProtocol {
     
 //    public func start() {

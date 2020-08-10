@@ -8,6 +8,7 @@
 
 import Foundation
 
+// <disabled> for beta version of library
 //protocol NLDownloadRequestProtocol {
 //    func pause()
 //    func resumeIfPossible()

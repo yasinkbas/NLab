@@ -55,6 +55,7 @@ public final class NLClient: HTTPClient {
         }
     }
     
+    // <disabled> for beta version of library
 //    public func downloadTask(with request: URLRequest, options: [NLClientOption], completionHandler: @escaping DownloadTaskHandler) -> NLDownloadRequest {
 //        performOperation(options) {
 //            session.downloadTask(with: request, completionHandler: completionHandler)

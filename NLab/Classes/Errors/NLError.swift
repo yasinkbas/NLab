@@ -8,15 +8,6 @@
 
 import Foundation
 
-// TODO: add custom errors
-//public enum NLError: Error {
-//    case invalidToken
-//    case alreadyExistEmail
-//    case invalidURL(url: String)
-//    case parseError(error: Error?)
-//    case dataIsNil
-//}
-
 public protocol NLError: Error {
     var checkInternet: String { get }
     var invalidResponse: String { get }

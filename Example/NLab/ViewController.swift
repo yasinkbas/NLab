@@ -9,7 +9,8 @@
 import UIKit
 import NLab
 
-// MARK: - All
+// MARK: - Model
+
 struct Post: NLResponseModel {
     struct Response: Decodable {
         let id: Int
@@ -18,6 +19,7 @@ struct Post: NLResponseModel {
     }
 }
 
+// MARK: - API
 
 struct PostAPI {
     let client = NLClient(baseURL: URL(string: "https://jsonplaceholder.typicode.com/")!)
@@ -39,17 +41,23 @@ struct PostAPI {
     }
 }
 
+// MARK: - Controller
 
 class ViewController: UIViewController {
     
+    var api: PostAPI!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        api = PostAPI()
+        
         getPost(id: 5)
         listPosts()
     }
     
+    // MARK: Use written api
+    // testing onData
     func getPost(id: Int) {
-        let api = PostAPI()
         let postDirector = api.get(id: id)
         postDirector.onData { post in
             print("------------- You got \(id). post -------------")
@@ -59,29 +67,29 @@ class ViewController: UIViewController {
         postDirector.start()
     }
     
+    // testing onData, onResponse, onError
     func listPosts() {
-        let api = PostAPI()
         let postListDirector = api.list()
         postListDirector.onData { posts in
-            // works when successfully got data
+            // when successfully got data and decoded without problem
             print("------------- You got these posts -------------")
-            posts.enumerated().forEach { print("\($0)-) \($1.title)\n--\($1.body)\n-------------")}
+            posts.enumerated().forEach { index, post in
+                let num = index + 1
+                print("\(num)-) \(post.title)\n--\(post.body)\n-------------")
+            }
         }
+        
         postListDirector.onError { error in
-            // only works on networking or decoding error
+            // when something is wrong
             print(error)
         }
+        
         postListDirector.onResponse { response in
-            // response always works
+            // always works both on Error and on Data
             print("response worked as it's supposed to be")
         }
+        
         postListDirector.start()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 }
 

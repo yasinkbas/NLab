@@ -8,6 +8,7 @@
 
 import Foundation
 
+// <disabled> for beta version of library
 //protocol NLUploadPointProtocol {
 //    associatedtype Input = Encodable
 //    
