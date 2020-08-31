@@ -14,6 +14,8 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		6ECD27F668833A4BFF59253B /* Pods_NLab_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E687DD45500ADC898DC43F95 /* Pods_NLab_Tests.framework */; };
+		C2894E3824FD43C100E4A94C /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2894E3724FD43C100E4A94C /* PostAPI.swift */; };
+		C2894E3D24FD43EF00E4A94C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2894E3C24FD43EF00E4A94C /* Post.swift */; };
 		E71DAF3EBACDFF5EA210FA9C /* Pods_NLab_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE9F2E5FF752370035EDC61B /* Pods_NLab_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +46,8 @@
 		821E872991E9B92239549490 /* Pods-NLab_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NLab_Tests.debug.xcconfig"; path = "Target Support Files/Pods-NLab_Tests/Pods-NLab_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		94FFCA9E609985929E333CE9 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		AE9F2E5FF752370035EDC61B /* Pods_NLab_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NLab_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2894E3724FD43C100E4A94C /* PostAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
+		C2894E3C24FD43EF00E4A94C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D6FD22FB93C78C1EDAAEF6AC /* NLab.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = NLab.podspec; path = ../NLab.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E687DD45500ADC898DC43F95 /* Pods_NLab_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NLab_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDC490935D5C29C0832F8933 /* Pods-NLab_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NLab_Example.release.xcconfig"; path = "Target Support Files/Pods-NLab_Example/Pods-NLab_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -102,8 +106,10 @@
 		607FACD21AFB9204008FA782 /* Example for NLab */ = {
 			isa = PBXGroup;
 			children = (
+				C2894E3B24FD43E300E4A94C /* Controller */,
+				C2894E3A24FD43DF00E4A94C /* API */,
+				C2894E3924FD43DB00E4A94C /* Model */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -146,6 +152,30 @@
 				94FFCA9E609985929E333CE9 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		C2894E3924FD43DB00E4A94C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C2894E3C24FD43EF00E4A94C /* Post.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C2894E3A24FD43DF00E4A94C /* API */ = {
+			isa = PBXGroup;
+			children = (
+				C2894E3724FD43C100E4A94C /* PostAPI.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		C2894E3B24FD43E300E4A94C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				607FACD71AFB9204008FA782 /* ViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		F8B5CAA551CD527C550CB525 /* Pods */ = {
@@ -333,6 +363,8 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				C2894E3824FD43C100E4A94C /* PostAPI.swift in Sources */,
+				C2894E3D24FD43EF00E4A94C /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

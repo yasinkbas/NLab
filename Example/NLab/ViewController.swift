@@ -9,40 +9,6 @@
 import UIKit
 import NLab
 
-// MARK: - Model
-
-struct Post: NLResponseModel {
-    struct Response: Decodable {
-        let id: Int
-        let title: String
-        let body: String
-    }
-}
-
-// MARK: - API
-
-struct PostAPI {
-    let client = NLClient(baseURL: URL(string: "https://jsonplaceholder.typicode.com/")!)
-    
-    func list() -> NLTaskDirector<[Post.Response], Empty> {
-        NLTaskPoint(client: client)
-            .path("posts/")
-            .method(.get)
-            .content(.json)
-            .build().and.direct()
-    }
-    
-    func get(id: Int) -> NLTaskDirector<Post.Response, Empty> {
-        NLTaskPoint(client: client)
-            .path("posts/\(id)/")
-            .method(.get)
-            .content(.json)
-            .build().and.direct()
-    }
-}
-
-// MARK: - Controller
-
 class ViewController: UIViewController {
     
     var api: PostAPI!
@@ -55,8 +21,6 @@ class ViewController: UIViewController {
         listPosts()
     }
     
-    // MARK: Use written api
-    // testing onData
     func getPost(id: Int) {
         let postDirector = api.get(id: id)
         postDirector.onData { post in
@@ -67,7 +31,6 @@ class ViewController: UIViewController {
         postDirector.start()
     }
     
-    // testing onData, onResponse, onError
     func listPosts() {
         let postListDirector = api.list()
         postListDirector.onData { posts in
