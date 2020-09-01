@@ -55,6 +55,13 @@ public final class NLClient: HTTPClient {
         }
     }
     
+    private func performOperation<
+        Task: URLSessionTask,
+        TaskOperation: HTTPRequest<Task>
+    >(_ options: [NLClientOption], task: () -> Task) -> TaskOperation {
+        TaskOperation.init(client: self, task: task(), options: options)
+    }
+    
     // <disabled> for beta version of library
 //    public func downloadTask(with request: URLRequest, options: [NLClientOption], completionHandler: @escaping DownloadTaskHandler) -> NLDownloadRequest {
 //        performOperation(options) {
@@ -88,13 +95,6 @@ public final class NLClient: HTTPClient {
     //            }
     //        }
     //    }
-    
-    private func performOperation<
-        Task: URLSessionTask,
-        TaskOperation: HTTPRequest<Task>
-    >(_ options: [NLClientOption], task: () -> Task) -> TaskOperation {
-        TaskOperation.init(client: self, task: task(), options: options)
-    }
 }
 
 extension NLClient: HTTPCLientLogging {}

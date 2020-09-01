@@ -29,31 +29,6 @@ protocol NLTaskPointProtocol {
 
 }
 
-protocol RequestEndpoint {
-    associatedtype Body: Encodable
-    
-    var body: Body? { get set }
-    var encoder: JSONEncoder { get set }
-    
-    func body(_ body: Body) -> Self
-    func encoder(_ encoder: JSONEncoder) -> Self
-    func resultHandler(_ handler: DefaultTaskHandler<Empty>)
-}
-
-protocol ResponseEndpoint {
-    associatedtype Response: Decodable
-    
-    var decoder: JSONDecoder { get set }
-    var resultHandler: DefaultTaskHandler<Response>? { get set }
-    
-    func decoder(_ decoder: JSONDecoder) -> Self
-
-}
-
-protocol ComprehensiveEndpoint {
-    
-}
-
 public final class NLTaskPoint<Output: Decodable, Body: Encodable>: NLPoint, NLTaskPointProtocol {
     var decoder: JSONDecoder = JSONDecoder()
     var encoder: JSONEncoder = JSONEncoder()

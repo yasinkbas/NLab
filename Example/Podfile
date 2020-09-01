@@ -5,7 +5,5 @@ target 'NLab_Example' do
 
   target 'NLab_Tests' do
     inherit! :search_paths
-
-    
   end
 end

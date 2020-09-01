@@ -9,6 +9,7 @@
 import Foundation
 
 public struct NLTaskRoute<Output: Decodable, Body: Encodable>: HTTPUtilizableRoute {
+    
     public var path: String
     public var client: HTTPClient
     public var method: HTTPMethod

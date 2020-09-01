@@ -61,30 +61,30 @@ extension HTTPDirector where Task == DataTask {
 }
 
 // <disabled> for beta version of library
-extension HTTPDirector where Task == DownloadTask {
-    /// starts your request with options(default)
-    /// - Parameter pure: if it is true disables options, otherwise runs options before request.
-    public func start() {
-        //        let request = client.downloadTask(
-        //            with: urlRequest,
-        //            options: options,
-        //            completionHandler: <#T##DownloadTaskHandler##DownloadTaskHandler##(URL?, URLResponse?, Error?) -> Void#>
-        //        )
-        //        request.start()
-    }
-}
-
-// <disabled> for beta version of library
-extension HTTPDirector where Task == UploadTask {
-    /// starts your request with options(default)
-    /// - Parameter pure: if it is true disables options, otherwise runs options before request.
-    public func start() {
-        //        let request = client.downloadTask(
-        //            with: urlRequest,
-        //            options: options,
-        //            completionHandler: <#T##DownloadTaskHandler##DownloadTaskHandler##(URL?, URLResponse?, Error?) -> Void#>
-        //        )
-        //        request.start()
-    }
-}
+//extension HTTPDirector where Task == DownloadTask {
+//    /// starts your request with options(default)
+//    /// - Parameter pure: if it is true disables options, otherwise runs options before request.
+//    public func start() {
+//        //        let request = client.downloadTask(
+//        //            with: urlRequest,
+//        //            options: options,
+//        //            completionHandler: <#T##DownloadTaskHandler##DownloadTaskHandler##(URL?, URLResponse?, Error?) -> Void#>
+//        //        )
+//        //        request.start()
+//    }
+//}
+//
+//// <disabled> for beta version of library
+//extension HTTPDirector where Task == UploadTask {
+//    /// starts your request with options(default)
+//    /// - Parameter pure: if it is true disables options, otherwise runs options before request.
+//    public func start() {
+//        //        let request = client.downloadTask(
+//        //            with: urlRequest,
+//        //            options: options,
+//        //            completionHandler: <#T##DownloadTaskHandler##DownloadTaskHandler##(URL?, URLResponse?, Error?) -> Void#>
+//        //        )
+//        //        request.start()
+//    }
+//}
 
