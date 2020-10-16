@@ -16,6 +16,7 @@ public struct NLTaskRoute<Output: Decodable, Body: Encodable>: HTTPUtilizableRou
     public var header: HTTPHeader?
     public var options: [NLClientOption]
     public var parameters: [URLQueryItem]
+    public var errorMiddleware: ErrorMiddleware.Type?
     public var configuration: URLSessionConfiguration
     public var authentication: NLAuthentication.Type?
     public var contentType: NLContentType
@@ -52,6 +53,6 @@ public struct NLTaskRoute<Output: Decodable, Body: Encodable>: HTTPUtilizableRou
     }
     
     public func direct() -> NLTaskDirector<Output, Body> {
-        NLTaskDirector(client: client, urlRequest: asURLRequest(), decoder: decoder)
+        NLTaskDirector(client: client, urlRequest: asURLRequest(), errorMiddleware: errorMiddleware, decoder: decoder)
     }
 }

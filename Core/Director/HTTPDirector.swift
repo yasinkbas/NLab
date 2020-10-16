@@ -11,6 +11,7 @@ import Foundation
 public class HTTPDirector<Task: URLSessionTask, Output: Decodable, Request: HTTPRequest<Task>> {
     internal var client: HTTPClient
     internal var urlRequest: URLRequest
+    internal var errorMiddleware: ErrorMiddleware.Type?
     internal var decoder: JSONDecoder
     internal var options: [NLClientOption]
     
@@ -21,9 +22,10 @@ public class HTTPDirector<Task: URLSessionTask, Output: Decodable, Request: HTTP
     internal var onError: HTTPErrorHandler?
     internal var onResponse: HTTPResponseHandler?
     
-    init(client: HTTPClient, urlRequest: URLRequest, decoder: JSONDecoder, options: [NLClientOption] = []) {
+    init(client: HTTPClient, urlRequest: URLRequest, errorMiddleware: ErrorMiddleware.Type?, decoder: JSONDecoder, options: [NLClientOption] = []) {
         self.client = client
         self.urlRequest = urlRequest
+        self.errorMiddleware = errorMiddleware
         self.decoder = decoder
         self.options = options
     }
@@ -52,6 +54,7 @@ extension HTTPDirector where Task == DataTask {
             with: urlRequest,
             options: options,
             decoder: decoder,
+            errorMiddleware: errorMiddleware,
             onError: onError,
             onData: onData,
             onResponse: onResponse

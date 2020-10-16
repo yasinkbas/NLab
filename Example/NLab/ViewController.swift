@@ -12,10 +12,11 @@ import NLab
 class ViewController: UIViewController {
     
     var api: PostAPI!
+    let client = NLClient(baseURL: URL(string: "https://jsonplaceholder.typicode.com/")!)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        api = PostAPI()
+        api = PostAPI(client: client)
         
         getPost(id: 5)
         listPosts()

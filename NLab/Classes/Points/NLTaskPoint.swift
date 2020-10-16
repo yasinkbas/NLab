@@ -94,6 +94,7 @@ public final class NLTaskPoint<Output: Decodable, Body: Encodable>: NLPoint, NLT
             header: self.header,
             options: self.options,
             parameters: self.parameters,
+            errorMiddleware: self.errorMiddleware,
             configuration: self.configuration,
             authentication: self.authentication,
             contentType: self.content,

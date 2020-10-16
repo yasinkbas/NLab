@@ -9,14 +9,21 @@
 import Foundation
 import NLab
 
-struct PostAPI {
-    let client = NLClient(baseURL: URL(string: "https://jsonplaceholder.typicode.com/")!)
-    
+class ErrorHandler: ErrorMiddleware {
+    static func onError(_ error: Error) -> Error {
+        // if request has any error
+        // run this block
+        return error
+    }
+}
+
+class PostAPI: APIClient {
     func list() -> NLTaskDirector<[Post.Response], Empty> {
         NLTaskPoint(client: client)
             .path("posts/")
             .method(.get)
             .content(.json)
+            .middleware(ErrorHandler.self)
             .build().and.direct()
     }
     
@@ -25,6 +32,7 @@ struct PostAPI {
             .path("posts/\(id)/")
             .method(.get)
             .content(.json)
+            .middleware(ErrorHandler.self)
             .build().and.direct()
     }
 }

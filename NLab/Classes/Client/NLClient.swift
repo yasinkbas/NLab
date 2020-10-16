@@ -31,6 +31,7 @@ public final class NLClient: HTTPClient {
         with request: URLRequest,
         options: [NLClientOption],
         decoder: JSONDecoder = JSONDecoder(),
+        errorMiddleware: ErrorMiddleware.Type?,
         onError: HTTPErrorHandler?,
         onData: HTTPDataHandler<Output>?,
         onResponse: HTTPResponseHandler?
@@ -39,7 +40,13 @@ public final class NLClient: HTTPClient {
             session.dataTask(with: request) { data, response, error in
                 self.log(request: request)
                 guard let data = data else {
-                    error.unwrap { onError?($0) }
+                    error.unwrap {
+                        if let errorMiddleware = errorMiddleware {
+                            onError?(errorMiddleware.onError($0))
+                        } else {
+                            onError?($0)
+                        }
+                    }
                     response.unwrap { onResponse?($0) }
                     return
                 }
@@ -54,16 +61,6 @@ public final class NLClient: HTTPClient {
                 response.unwrap { onResponse?($0) }
             }
         }
-    }
-    
-    // TODO: add Logging module
-    private func prettyPrint(data: Data) {
-        if let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers),
-            let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) {
-             print(String(decoding: jsonData, as: UTF8.self))
-         } else {
-             print("there is no json data")
-         }
     }
     
     private func performOperation<
