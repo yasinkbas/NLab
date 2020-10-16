@@ -7,5 +7,4 @@
 
 import Foundation
 
-/// will be used by middleware to prevent assign associated typed protocol as parameter
 public protocol Middleware { }
