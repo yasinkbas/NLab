@@ -44,6 +44,7 @@ public final class NLClient: HTTPClient {
                     return
                 }
                 do {
+                    self.prettyPrint(data: data)
                     let resultData = try decoder.decode(Output.self, from: data)
                     onData?(resultData)
                 } catch {
@@ -53,6 +54,16 @@ public final class NLClient: HTTPClient {
                 response.unwrap { onResponse?($0) }
             }
         }
+    }
+    
+    // TODO: add Logging module
+    private func prettyPrint(data: Data) {
+        if let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers),
+            let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) {
+             print(String(decoding: jsonData, as: UTF8.self))
+         } else {
+             print("there is no json data")
+         }
     }
     
     private func performOperation<
