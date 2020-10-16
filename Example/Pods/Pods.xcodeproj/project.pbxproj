@@ -38,6 +38,10 @@
 		C23CAEF124CF511300F56F86 /* NLTaskDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23CAEE024CF511300F56F86 /* NLTaskDirector.swift */; };
 		C23CAEF424CF517E00F56F86 /* HTTPClientLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23CAEC124CF50B200F56F86 /* HTTPClientLogging.swift */; };
 		C23CAEF524CF518000F56F86 /* HTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23CAEC024CF50B200F56F86 /* HTTPClientProtocol.swift */; };
+		C2D5F613253A499500DB6CE3 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D5F612253A499500DB6CE3 /* API.swift */; };
+		C2D5F615253A49FB00DB6CE3 /* ErrorMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D5F614253A49FB00DB6CE3 /* ErrorMiddleware.swift */; };
+		C2D5F617253A4B9900DB6CE3 /* Middleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D5F616253A4B9900DB6CE3 /* Middleware.swift */; };
+		C2D5F619253A607700DB6CE3 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D5F618253A607700DB6CE3 /* APIClient.swift */; };
 		C4D8F5CB727B07D65A10B02AF9D54044 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		D7928ADD38A716289E3EA21555FC833A /* Pods-NLab_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 02F6FAE31BD5AC11F5C0E2866680ECCA /* Pods-NLab_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E43D60D150FCA7DD33F15148C3560ADA /* Pods-NLab_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E9568D4E53DAA4C9B7987E036A86756D /* Pods-NLab_Example-dummy.m */; };
@@ -109,6 +113,10 @@
 		C23CAEDC24CF511300F56F86 /* Encodable+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Encodable+JSON.swift"; sourceTree = "<group>"; };
 		C23CAEDE24CF511300F56F86 /* Optional+Unwrap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+Unwrap.swift"; sourceTree = "<group>"; };
 		C23CAEE024CF511300F56F86 /* NLTaskDirector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLTaskDirector.swift; sourceTree = "<group>"; };
+		C2D5F612253A499500DB6CE3 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		C2D5F614253A49FB00DB6CE3 /* ErrorMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMiddleware.swift; sourceTree = "<group>"; };
+		C2D5F616253A4B9900DB6CE3 /* Middleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middleware.swift; sourceTree = "<group>"; };
+		C2D5F618253A607700DB6CE3 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		C684AD1F3FBA42963F419EB47C33E601 /* Pods-NLab_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NLab_Example.release.xcconfig"; sourceTree = "<group>"; };
 		CA233D8EB9B4059912127B068BE7A6CD /* Pods-NLab_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NLab_Tests-Info.plist"; sourceTree = "<group>"; };
 		CAB103B11697A8E875EA4D286379E9B4 /* NLab.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NLab.release.xcconfig; sourceTree = "<group>"; };
@@ -163,6 +171,7 @@
 		150BD483D75924B2E891A84FCD7C0126 /* NLab */ = {
 			isa = PBXGroup;
 			children = (
+				C23CAEBE24CF50AA00F56F86 /* Core */,
 				C23CAE8C24CF502C00F56F86 /* Classes */,
 				02D0361DA1635B9631595E2098922ECE /* Pod */,
 				52725CDE0CF24E5F3A62108ED324D984 /* Support Files */,
@@ -216,10 +225,11 @@
 		C23CAE8C24CF502C00F56F86 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				C23CAEBE24CF50AA00F56F86 /* Core */,
+				C2D5F611253A498E00DB6CE3 /* API */,
 				C23CAE8F24CF503C00F56F86 /* Client */,
 				C23CAEDF24CF511300F56F86 /* Directors */,
 				C23CAECB24CF511200F56F86 /* Errors */,
+				C2D5F61A253A65ED00DB6CE3 /* Middleware */,
 				C23CAECD24CF511300F56F86 /* Points */,
 				C23CAEC724CF511200F56F86 /* Requests */,
 				C23CAED324CF511300F56F86 /* Routers */,
@@ -331,6 +341,7 @@
 				C23CAEA724CF50A000F56F86 /* Director */,
 				C23CAEA524CF50A000F56F86 /* Header */,
 				C23CAEA324CF509F00F56F86 /* Method */,
+				C2D5F610253A497E00DB6CE3 /* Middleware */,
 				C23CAEAB24CF50A000F56F86 /* Model */,
 				C23CAE9924CF509F00F56F86 /* Point */,
 				C23CAE9C24CF509F00F56F86 /* Request */,
@@ -437,6 +448,31 @@
 				C23CAEE024CF511300F56F86 /* NLTaskDirector.swift */,
 			);
 			path = Directors;
+			sourceTree = "<group>";
+		};
+		C2D5F610253A497E00DB6CE3 /* Middleware */ = {
+			isa = PBXGroup;
+			children = (
+				C2D5F616253A4B9900DB6CE3 /* Middleware.swift */,
+			);
+			path = Middleware;
+			sourceTree = "<group>";
+		};
+		C2D5F611253A498E00DB6CE3 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				C2D5F612253A499500DB6CE3 /* API.swift */,
+				C2D5F618253A607700DB6CE3 /* APIClient.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		C2D5F61A253A65ED00DB6CE3 /* Middleware */ = {
+			isa = PBXGroup;
+			children = (
+				C2D5F614253A49FB00DB6CE3 /* ErrorMiddleware.swift */,
+			);
+			path = Middleware;
 			sourceTree = "<group>";
 		};
 		C8FC8A02568656C7634BC4D32AA93AD3 /* Development Pods */ = {
@@ -671,12 +707,15 @@
 				C23CAEB424CF50A000F56F86 /* HTTPRequestable.swift in Sources */,
 				C23CAEBB24CF50A000F56F86 /* NLModel.swift in Sources */,
 				C23CAEB824CF50A000F56F86 /* HTTPHeader.swift in Sources */,
+				C2D5F617253A4B9900DB6CE3 /* Middleware.swift in Sources */,
 				C23CAEE824CF511300F56F86 /* NLTaskPoint.swift in Sources */,
+				C2D5F613253A499500DB6CE3 /* API.swift in Sources */,
 				C23CAEF024CF511300F56F86 /* Optional+Unwrap.swift in Sources */,
 				C23CAE9524CF506900F56F86 /* NLClientError.swift in Sources */,
 				C23CAEEA24CF511300F56F86 /* Typealiases.swift in Sources */,
 				C23CAEEF24CF511300F56F86 /* Encodable+JSON.swift in Sources */,
 				C23CAEE624CF511300F56F86 /* NLError.swift in Sources */,
+				C2D5F615253A49FB00DB6CE3 /* ErrorMiddleware.swift in Sources */,
 				C23CAE9324CF505800F56F86 /* NLClient.swift in Sources */,
 				C23CAEBA24CF50A000F56F86 /* NLContentType.swift in Sources */,
 				C23CAEB624CF50A000F56F86 /* HTTPUtilizableRoute.swift in Sources */,
@@ -685,6 +724,7 @@
 				C23CAEB924CF50A000F56F86 /* HTTPDirector.swift in Sources */,
 				C23CAEB724CF50A000F56F86 /* HTTPMethod.swift in Sources */,
 				C23CAEF424CF517E00F56F86 /* HTTPClientLogging.swift in Sources */,
+				C2D5F619253A607700DB6CE3 /* APIClient.swift in Sources */,
 				C23CAEB324CF50A000F56F86 /* HTTPRequest.swift in Sources */,
 				C23CAE9124CF504E00F56F86 /* NLClientOption.swift in Sources */,
 				C23CAEE424CF511300F56F86 /* NLTaskRequest.swift in Sources */,

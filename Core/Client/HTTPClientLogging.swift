@@ -17,8 +17,17 @@ extension HTTPCLientLogging {
     func decoderErrorLog(error: Error, data: Data) {
         print("\n------------------------->")
         print("!-->Decoder error: ", error)
-        print("!-->Coming Data: ", String(data: data, encoding: .utf8)!)
+        print("!-->Coming Data: ", prettyPrint(data: data))
         print("------------------------->\n")
+    }
+    
+    func prettyPrint(data: Data) {
+        if let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers),
+            let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) {
+             print(String(decoding: jsonData, as: UTF8.self))
+         } else {
+             print("there is no json data")
+         }
     }
 }
 

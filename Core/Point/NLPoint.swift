@@ -32,6 +32,7 @@ public class NLPoint: NLPointProtocol {
     var header: HTTPHeader?
     var options: [NLClientOption]
     var parameters: [URLQueryItem]
+    var errorMiddleware: ErrorMiddleware.Type?
     var configuration: URLSessionConfiguration
     
     public init(
@@ -64,6 +65,11 @@ public class NLPoint: NLPointProtocol {
     
     public func header(_ header: HTTPHeader) -> Self {
         self.header = header
+        return self
+    }
+    
+    public func middleware(_ errorMiddleware: ErrorMiddleware.Type) -> Self {
+        self.errorMiddleware = errorMiddleware
         return self
     }
     
