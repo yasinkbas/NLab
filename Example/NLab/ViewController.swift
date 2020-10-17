@@ -28,7 +28,7 @@ class ViewController: UIViewController {
             print("------------- You got \(id). post -------------")
             print("\(id) -> \(post.title)\n--\(post.body)\n")
         }
-        
+
         postDirector.start()
     }
     
