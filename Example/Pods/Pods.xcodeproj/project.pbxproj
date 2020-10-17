@@ -338,7 +338,7 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
-		C221CDF6253A67A800DF1670 /* Network */ = {
+		C221CDF6253A67A800DF1670 /* HTTP */ = {
 			isa = PBXGroup;
 			children = (
 				C2D5F611253A498E00DB6CE3 /* API */,
@@ -352,14 +352,14 @@
 				C23CAED124CF511300F56F86 /* Typealiases */,
 				C23CAED724CF511300F56F86 /* Utility */,
 			);
-			path = Network;
+			path = HTTP;
 			sourceTree = "<group>";
 		};
 		C23CAE8C24CF502C00F56F86 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				C221CDCD253A67A300DF1670 /* Core */,
-				C221CDF6253A67A800DF1670 /* Network */,
+				C221CDF6253A67A800DF1670 /* HTTP */,
 				C23CAE8D24CF502C00F56F86 /* .gitkeep */,
 			);
 			name = Classes;
