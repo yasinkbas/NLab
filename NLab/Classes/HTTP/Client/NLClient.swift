@@ -39,15 +39,18 @@ open class NLClient: HTTPClient {
         performOperation(options) {
             session.dataTask(with: request) { data, response, error in
                 self.log(request: request)
-                guard let data = data else {
-                    error.unwrap {
-                        if let errorMiddleware = errorMiddleware {
-                            onError?(errorMiddleware.onError($0))
-                        } else {
-                            onError?($0)
-                        }
+                
+                error.unwrap {
+                    if let errorMiddleware = errorMiddleware {
+                        onError?(errorMiddleware.onError($0))
+                    } else {
+                        onError?($0)
                     }
-                    response.unwrap { onResponse?($0) }
+                }
+                
+                response.unwrap { onResponse?($0) }
+                
+                guard let data = data else {
                     return
                 }
                 do {
@@ -55,10 +58,12 @@ open class NLClient: HTTPClient {
                     let resultData = try decoder.decode(Output.self, from: data)
                     onData?(resultData)
                 } catch {
-                    onError?(NLClientError.decoderError)
+                    if let errorMiddleware = errorMiddleware {
+                        onError?(errorMiddleware.onError(error))
+                    } else {
+                        onError?(error)
+                    }
                 }
-                
-                response.unwrap { onResponse?($0) }
             }
         }
     }
