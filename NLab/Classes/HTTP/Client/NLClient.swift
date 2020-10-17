@@ -8,12 +8,12 @@
 
 import Foundation
 
-public final class NLClient: HTTPClient {
+open class NLClient: HTTPClient {
     public var baseURL: URL
     public var session: URLSession
     public var authentication: NLAuthentication.Type?
     
-    public init(baseURL: URL, session: URLSession = .shared, authentication: NLAuthentication.Type? = nil) {
+    required public init(baseURL: URL, session: URLSession = .shared, authentication: NLAuthentication.Type? = nil) {
         self.baseURL = baseURL
         self.session = session
         self.authentication = authentication
