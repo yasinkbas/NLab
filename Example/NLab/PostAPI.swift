@@ -12,7 +12,7 @@ import NLab
 class ErrorHandler: ErrorMiddleware {
     static func onError(_ error: Error) -> Error {
         // if request has any error
-        // run this block
+        // this is the first place to run
         return error
     }
 }
