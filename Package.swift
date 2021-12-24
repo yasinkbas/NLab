@@ -19,8 +19,8 @@ let package = Package(
         .target(
             name: "NLab",
             dependencies: []),
-//        .testTarget(
-//            name: "NLabTests",
-//            dependencies: ["NLab"]),
+        .testTarget(
+            name: "NLabTests",
+            dependencies: ["NLab"]),
     ]
 )
