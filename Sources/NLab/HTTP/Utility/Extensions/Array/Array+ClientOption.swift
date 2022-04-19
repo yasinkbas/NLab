@@ -9,9 +9,9 @@
 import Foundation
 
 extension Array where Element == NLClientOption {
-    /// loads tasks of client(request) options
+    /// loads option tasks of request
     /// - Parameter client: client instance
     func load(client: NLClient) {
-        self.forEach { $0.task(client) }
+        self.forEach { $0.optionTask(client) }
     }
 }

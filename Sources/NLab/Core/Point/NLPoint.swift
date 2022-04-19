@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol NLPointProtocol: class {
+protocol NLPointProtocol: AnyObject {
     var path: String { get set }
     var client: NLClient { get set }
     var method: HTTPMethod { get set }

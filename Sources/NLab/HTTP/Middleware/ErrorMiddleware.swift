@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public protocol ErrorMiddleware: Middleware {
     static func onError(_ error: Error) -> Error
 }

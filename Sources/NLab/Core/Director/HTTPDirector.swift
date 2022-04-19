@@ -31,18 +31,24 @@ public class HTTPDirector<Task: URLSessionTask, Output: Decodable, Request: HTTP
     }
     
     /// When the request was successfully and no problem with decoding.
-    public func onData(_ closure: @escaping HTTPDataHandler<Output>) {
+    @discardableResult
+    public func onData(_ closure: @escaping HTTPDataHandler<Output>) -> Self {
         self.onData = closure
+        return self
     }
     
     /// When there is an error on request or decoding.
-    public func onError(_ closure: @escaping HTTPErrorHandler) {
+    @discardableResult
+    public func onError(_ closure: @escaping HTTPErrorHandler) -> Self {
         self.onError = closure
+        return self
     }
     
     /// When the response is not nil
-    public func onResponse(_ closure: @escaping HTTPResponseHandler) {
+    @discardableResult
+    public func onResponse(_ closure: @escaping HTTPResponseHandler) -> Self {
         self.onResponse = closure
+        return self
     }
 }
 
@@ -62,32 +68,4 @@ extension HTTPDirector where Task == DataTask {
         request?.start(pure: pure)
     }
 }
-
-// <disabled> for beta version of library
-//extension HTTPDirector where Task == DownloadTask {
-//    /// starts your request with options(default)
-//    /// - Parameter pure: if it is true disables options, otherwise runs options before request.
-//    public func start() {
-//        //        let request = client.downloadTask(
-//        //            with: urlRequest,
-//        //            options: options,
-//        //            completionHandler: <#T##DownloadTaskHandler##DownloadTaskHandler##(URL?, URLResponse?, Error?) -> Void#>
-//        //        )
-//        //        request.start()
-//    }
-//}
-//
-//// <disabled> for beta version of library
-//extension HTTPDirector where Task == UploadTask {
-//    /// starts your request with options(default)
-//    /// - Parameter pure: if it is true disables options, otherwise runs options before request.
-//    public func start() {
-//        //        let request = client.downloadTask(
-//        //            with: urlRequest,
-//        //            options: options,
-//        //            completionHandler: <#T##DownloadTaskHandler##DownloadTaskHandler##(URL?, URLResponse?, Error?) -> Void#>
-//        //        )
-//        //        request.start()
-//    }
-//}
 

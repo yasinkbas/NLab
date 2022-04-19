@@ -8,8 +8,6 @@
 
 import Foundation
 
-protocol NLTaskDirectorProtocol {
-    
-}
+protocol NLTaskDirectorProtocol {}
 
 public final class NLTaskDirector<Output: Decodable, Body: Encodable>: HTTPDirector<DataTask, Output, NLTaskRequest>, NLTaskDirectorProtocol {}

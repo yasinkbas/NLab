@@ -11,23 +11,21 @@ import Foundation
 /// Custom Option implementation
 public enum NLClientOption {
     case cancelOtherRequests
-    /// first add the option as case
     
-    var task: (NLClient) -> Void {
-        /// add your case and your function that handle case
+    var asURLSession: (NLClient) -> URLSession {
+        return { $0.session }
+    }
+    
+    var optionTask: (NLClient) -> Void {
         switch self {
         case .cancelOtherRequests:
             return cancelOtherRequests
         }
     }
-    
-    /// returns session
-    var asURLSession: (NLClient) -> URLSession {
-        return { $0.session }
-    }
-    
-    /// Add your function
+}
+
+extension NLClientOption {
     func cancelOtherRequests(_ client: NLClient) {
-        asURLSession(client).getAllTasks { tasks in tasks.forEach { $0.cancel() }}
+        asURLSession(client).getAllTasks { $0.forEach { $0.cancel() }}
     }
 }
