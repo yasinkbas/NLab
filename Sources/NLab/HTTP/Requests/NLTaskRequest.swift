@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol NLTaskRequestProtocol { }
+protocol NLTaskRequestProtocol {}
 
 public class NLTaskRequest: HTTPRequest<DataTask>, NLTaskRequestProtocol {}

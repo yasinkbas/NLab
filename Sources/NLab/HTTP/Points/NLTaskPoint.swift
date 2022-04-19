@@ -8,8 +8,6 @@
 
 import Foundation
 
-// TODO: move these associate fields to base protocol EndpointProtocol
-// TODO: change resulthandler as onData(data:,result: -> ()) & onError(error: -> ())
 protocol NLTaskPointProtocol {
     associatedtype Body: Encodable
     associatedtype Output: Decodable
