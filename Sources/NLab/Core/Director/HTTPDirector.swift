@@ -15,7 +15,6 @@ public class HTTPDirector<Task: URLSessionTask, Output: Decodable, Request: HTTP
     internal var decoder: JSONDecoder
     internal var options: [NLClientOption]
     
-    internal var request: Request?
     internal var task: Task?
     
     internal var onData: HTTPDataHandler<Output>?
@@ -56,7 +55,7 @@ extension HTTPDirector where Task == DataTask {
     /// starts your request with options(default)
     /// - Parameter pure: if it is true disables options, otherwise runs options before request.
     public func start(pure: Bool = false) {
-        self.request = (client.defaultTask(
+        let request = (client.defaultTask(
             with: urlRequest,
             options: options,
             decoder: decoder,
@@ -66,6 +65,19 @@ extension HTTPDirector where Task == DataTask {
             onResponse: onResponse
         ) as? Request)
         request?.start(pure: pure)
+    }
+    
+    @available(iOS 15, *)
+    public func startAsync() async {
+        await (client.asyncDefaultTask(
+            with: urlRequest,
+            options: options,
+            decoder: decoder,
+            errorMiddleware: errorMiddleware,
+            onError: onError,
+            onData: onData,
+            onResponse: onResponse
+        ))
     }
 }
 

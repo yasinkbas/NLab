@@ -7,6 +7,7 @@
 
 import Foundation
 
+// TODO: Export async director or remove
 public class AsyncHTTPDirector<Task: URLSessionTask, Output: Decodable, Request: AsyncHTTPRequest> {
     internal var client: HTTPClient
     internal var urlRequest: URLRequest
@@ -48,22 +49,5 @@ public class AsyncHTTPDirector<Task: URLSessionTask, Output: Decodable, Request:
     public func onResponse(_ closure: @escaping HTTPResponseHandler) -> Self {
         self.onResponse = closure
         return self
-    }
-}
-
-extension AsyncHTTPDirector where Task == DataTask {
-    /// starts your request with options(default)
-    /// - Parameter pure: if it is true disables options, otherwise runs options before request.
-    public func start(pure: Bool = false) {
-        self.request = (client.defaultTask(
-            with: urlRequest,
-            options: options,
-            decoder: decoder,
-            errorMiddleware: errorMiddleware,
-            onError: onError,
-            onData: onData,
-            onResponse: onResponse
-        ) as? Request)
-        request?.start(pure: pure)
     }
 }
