@@ -1,20 +1,21 @@
 //
-//  HTTPDirector.swift
-//  NetworkManager
+//  File.swift
+//  
 //
-//  Created by yasinkbas on 3.07.2020.
-//  Copyright © 2020 Yasin Akbaş. All rights reserved.
+//  Created by Yasin Akbas on 22.04.2022.
 //
 
 import Foundation
 
-public class HTTPDirector<Task: URLSessionTask, Output: Decodable, Request: HTTPRequest<Task>> {
+// TODO: Export async director or remove
+public class AsyncHTTPDirector<Task: URLSessionTask, Output: Decodable, Request: AsyncHTTPRequest> {
     internal var client: HTTPClient
     internal var urlRequest: URLRequest
     internal var errorMiddleware: ErrorMiddleware.Type?
     internal var decoder: JSONDecoder
     internal var options: [NLClientOption]
     
+    internal var request: Request?
     internal var task: Task?
     
     internal var onData: HTTPDataHandler<Output>?
@@ -50,34 +51,3 @@ public class HTTPDirector<Task: URLSessionTask, Output: Decodable, Request: HTTP
         return self
     }
 }
-
-extension HTTPDirector where Task == DataTask {
-    /// starts your request with options(default)
-    /// - Parameter pure: if it is true disables options, otherwise runs options before request.
-    public func start(pure: Bool = false) {
-        let request = (client.defaultTask(
-            with: urlRequest,
-            options: options,
-            decoder: decoder,
-            errorMiddleware: errorMiddleware,
-            onError: onError,
-            onData: onData,
-            onResponse: onResponse
-        ) as? Request)
-        request?.start(pure: pure)
-    }
-    
-    @available(iOS 15, *)
-    public func startAsync() async {
-        await (client.asyncDefaultTask(
-            with: urlRequest,
-            options: options,
-            decoder: decoder,
-            errorMiddleware: errorMiddleware,
-            onError: onError,
-            onData: onData,
-            onResponse: onResponse
-        ))
-    }
-}
-
