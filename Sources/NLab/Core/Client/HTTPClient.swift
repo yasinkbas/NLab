@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol HTTPClient {
+public protocol HTTPClient: AnyObject {
     var baseURL: URL { get set }
     var session: URLSession { get set }
     var authentication: NLAuthentication.Type? { get set }
@@ -16,4 +16,5 @@ public protocol HTTPClient {
     init(baseURL: URL, session: URLSession, authentication: NLAuthentication.Type?)
     
     func defaultTask<Output: Decodable>(with request: URLRequest, options: [NLClientOption], decoder: JSONDecoder, errorMiddleware: ErrorMiddleware.Type?, onError: HTTPErrorHandler?, onData: HTTPDataHandler<Output>?, onResponse: HTTPResponseHandler?) -> NLTaskRequest
+    func asyncDefaultTask<Output: Decodable>(with request: URLRequest, options: [NLClientOption], decoder: JSONDecoder, errorMiddleware: ErrorMiddleware.Type?, onError: HTTPErrorHandler?, onData: HTTPDataHandler<Output>?, onResponse: HTTPResponseHandler?) async -> NLAsyncTaskRequest
 }
