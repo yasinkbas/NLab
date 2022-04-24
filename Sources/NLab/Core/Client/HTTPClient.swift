@@ -15,8 +15,8 @@ public protocol HTTPClient: AnyObject {
     
     init(baseURL: URL, session: URLSession, authentication: NLAuthentication.Type?)
     
-    func defaultTask<Output: Decodable>(with request: URLRequest, options: [NLClientOption], decoder: JSONDecoder, errorMiddleware: ErrorMiddleware.Type?, onError: HTTPErrorHandler?, onData: HTTPDataHandler<Output>?, onResponse: HTTPResponseHandler?) -> NLTaskRequest
-    @discardableResult
+    func defaultTask<Output: Decodable>(with request: URLRequest, options: [NLClientOption], decoder: JSONDecoder, errorMiddleware: ErrorMiddleware.Type?, onError: HTTPErrorHandler?, onData: HTTPDataHandler<Output>?, onResponse: HTTPResponseHandler?)
+
     @available(iOS 15, *)
-    func asyncDefaultTask<Output: Decodable>(with request: URLRequest, options: [NLClientOption], decoder: JSONDecoder, errorMiddleware: ErrorMiddleware.Type?, onError: HTTPErrorHandler?, onData: HTTPDataHandler<Output>?, onResponse: HTTPResponseHandler?) async -> NLAsyncTaskRequest
+    func asyncDefaultTask<Output: Decodable>(with request: URLRequest, options: [NLClientOption], decoder: JSONDecoder, errorMiddleware: ErrorMiddleware.Type?, onError: HTTPErrorHandler?, onData: HTTPDataHandler<Output>?, onResponse: HTTPResponseHandler?) async -> Output?
 }

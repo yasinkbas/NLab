@@ -35,38 +35,35 @@ open class NLClient: HTTPClient {
         onError: HTTPErrorHandler?,
         onData: HTTPDataHandler<Output>?,
         onResponse: HTTPResponseHandler?
-    ) -> NLTaskRequest {
-        performOperation(options) {
-            session.dataTask(with: request) { [weak self] data, response, error in
-                self?.log(request: request)
-
-                error.unwrap {
-                    if let errorMiddleware = errorMiddleware {
-                        onError?(errorMiddleware.onError($0))
-                    } else {
-                        onError?($0)
-                    }
+    ) {
+        session.dataTask(with: request) { [weak self] data, response, error in
+            self?.log(request: request)
+            
+            error.unwrap {
+                if let errorMiddleware = errorMiddleware {
+                    onError?(errorMiddleware.onError($0))
+                } else {
+                    onError?($0)
                 }
-
-                response.unwrap { onResponse?($0) }
-
-                guard let data = data else { return }
-
-                do {
-                    self?.prettyPrint(data: data)
-                    let resultData = try decoder.decode(Output.self, from: data)
-                    onData?(resultData)
-                } catch {
-                    if let errorMiddleware = errorMiddleware {
-                        onError?(errorMiddleware.onError(error))
-                    } else {
-                        onError?(error)
-                    }
+            }
+            
+            response.unwrap { onResponse?($0) }
+            
+            guard let data = data else { return }
+            
+            do {
+                self?.prettyPrint(data: data)
+                let resultData = try decoder.decode(Output.self, from: data)
+                onData?(resultData)
+            } catch {
+                if let errorMiddleware = errorMiddleware {
+                    onError?(errorMiddleware.onError(error))
+                } else {
+                    onError?(error)
                 }
             }
         }
     }
-    
     
     @available(iOS 15, *)
     public func asyncDefaultTask<Output: Decodable>(
@@ -77,7 +74,7 @@ open class NLClient: HTTPClient {
         onError: HTTPErrorHandler?,
         onData: HTTPDataHandler<Output>?,
         onResponse: HTTPResponseHandler?
-    ) async -> NLAsyncTaskRequest {
+    ) async -> Output? {
         log(request: request)
         do {
             let (data, response) = try await session.data(for: request)
@@ -85,6 +82,7 @@ open class NLClient: HTTPClient {
             prettyPrint(data: data)
             let resultData = try decoder.decode(Output.self, from: data)
             onData?(resultData)
+            return resultData
         } catch {
             if let errorMiddleware = errorMiddleware {
                 onError?(errorMiddleware.onError(error))
@@ -92,20 +90,7 @@ open class NLClient: HTTPClient {
                 onError?(error)
             }
         }
-        return await performAsyncOperation(options)
-    }
-    
-    private func performOperation<
-        Task: URLSessionTask,
-        TaskOperation: HTTPRequest<Task>
-    >(_ options: [NLClientOption], task: () -> Task) -> TaskOperation {
-        TaskOperation(client: self, task: task(), options: options)
-    }
-    
-    private func performAsyncOperation<
-        TaskOperation: AsyncHTTPRequest
-    >(_ options: [NLClientOption]) async -> TaskOperation {
-        return TaskOperation(client: self, options: options)
+        return nil
     }
 }
 
