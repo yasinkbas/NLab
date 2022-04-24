@@ -67,7 +67,6 @@ open class NLClient: HTTPClient {
         }
     }
     
-    
     @available(iOS 15, *)
     public func asyncDefaultTask<Output: Decodable>(
         with request: URLRequest,
@@ -77,7 +76,7 @@ open class NLClient: HTTPClient {
         onError: HTTPErrorHandler?,
         onData: HTTPDataHandler<Output>?,
         onResponse: HTTPResponseHandler?
-    ) async -> NLAsyncTaskRequest {
+    ) async -> Output? {
         log(request: request)
         do {
             let (data, response) = try await session.data(for: request)
@@ -85,6 +84,7 @@ open class NLClient: HTTPClient {
             prettyPrint(data: data)
             let resultData = try decoder.decode(Output.self, from: data)
             onData?(resultData)
+            return resultData
         } catch {
             if let errorMiddleware = errorMiddleware {
                 onError?(errorMiddleware.onError(error))
@@ -92,7 +92,7 @@ open class NLClient: HTTPClient {
                 onError?(error)
             }
         }
-        return await performAsyncOperation(options)
+        return nil
     }
     
     private func performOperation<
@@ -100,12 +100,6 @@ open class NLClient: HTTPClient {
         TaskOperation: HTTPRequest<Task>
     >(_ options: [NLClientOption], task: () -> Task) -> TaskOperation {
         TaskOperation(client: self, task: task(), options: options)
-    }
-    
-    private func performAsyncOperation<
-        TaskOperation: AsyncHTTPRequest
-    >(_ options: [NLClientOption]) async -> TaskOperation {
-        return TaskOperation(client: self, options: options)
     }
 }
 
