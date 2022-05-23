@@ -68,7 +68,7 @@ extension HTTPDirector where Task == DataTask {
     }
     
     @available(iOS 15, *)
-    public func startAsync() async {
+    public func startAsync() async -> Output? {
         await (client.asyncDefaultTask(
             with: urlRequest,
             options: options,
