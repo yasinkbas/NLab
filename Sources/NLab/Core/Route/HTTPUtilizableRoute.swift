@@ -12,6 +12,7 @@ public protocol HTTPUtilizableRoute: HTTPBasicRoute, HTTPRequestable {
     var options: [NLClientOption] { get set }
     var configuration: URLSessionConfiguration { get set }
     
+    @available(*, deprecated, message: "will be deprecated in next versions")
     var and: Self { get }
 }
 

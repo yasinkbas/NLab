@@ -7,16 +7,8 @@
 
 import Foundation
 
-protocol AsyncHTTPRequestProtocol {
-    associatedtype Task = URLSessionTask
-    
-    var client: NLClient { get set }
-    var options: [NLClientOption] { get set }
-    
-    func loadOptions()
-}
+protocol AsyncHTTPRequestProtocol: Request {}
 
-// TODO: start/cancel features
 public class AsyncHTTPRequest: AsyncHTTPRequestProtocol {
     var client: NLClient
     var options: [NLClientOption]
@@ -40,4 +32,6 @@ public class AsyncHTTPRequest: AsyncHTTPRequestProtocol {
         self.client = request.client
         self.options = request.options
     }
+    
+    // TODO: start/cancel features
 }

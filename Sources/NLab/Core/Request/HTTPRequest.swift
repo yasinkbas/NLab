@@ -8,16 +8,13 @@
 
 import Foundation
 
-protocol HTTPRequestProtocol {
+protocol HTTPRequestProtocol: Request {
     associatedtype Task = URLSessionTask
     
     var task: Task { get set }
-    var client: NLClient { get set }
-    var options: [NLClientOption] { get set }
     
     func start(pure: Bool)
     func cancel()
-    func loadOptions()
 }
 
 typealias RequestHandler = (Any?, URLResponse?, Error?) -> Void
