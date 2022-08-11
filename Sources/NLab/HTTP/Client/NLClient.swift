@@ -38,29 +38,31 @@ open class NLClient: HTTPClient {
     ) -> NLTaskRequest {
         performOperation(options) {
             session.dataTask(with: request) { [weak self] data, response, error in
-                self?.log(request: request)
-                
-                error.unwrap {
-                    if let errorMiddleware = errorMiddleware {
-                        onError?(errorMiddleware.onError($0))
-                    } else {
-                        onError?($0)
+                DispatchQueue.main.async { [weak self] in
+                    self?.log(request: request)
+                    
+                    error.unwrap {
+                        if let errorMiddleware = errorMiddleware {
+                            onError?(errorMiddleware.onError($0))
+                        } else {
+                            onError?($0)
+                        }
                     }
-                }
-                
-                response.unwrap { onResponse?($0) }
-                
-                guard let data = data else { return }
-                
-                do {
-                    self?.prettyPrint(data: data)
-                    let resultData = try decoder.decode(Output.self, from: data)
-                    onData?(resultData)
-                } catch {
-                    if let errorMiddleware = errorMiddleware {
-                        onError?(errorMiddleware.onError(error))
-                    } else {
-                        onError?(error)
+                    
+                    response.unwrap { onResponse?($0) }
+                    
+                    guard let data = data else { return }
+                    
+                    do {
+                        self?.prettyPrint(data: data)
+                        let resultData = try decoder.decode(Output.self, from: data)
+                        onData?(resultData)
+                    } catch {
+                        if let errorMiddleware = errorMiddleware {
+                            onError?(errorMiddleware.onError(error))
+                        } else {
+                            onError?(error)
+                        }
                     }
                 }
             }
