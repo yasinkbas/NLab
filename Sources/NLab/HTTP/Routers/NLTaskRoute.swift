@@ -33,7 +33,7 @@ public struct NLTaskRoute<Output: Decodable, Body: Encodable>: HTTPUtilizableRou
     public func asURLRequest() -> URLRequest {
         let url = URL(string: path, relativeTo: client.baseURL)
         
-        guard var urlComponents = URLComponents(url: url!, resolvingAgainstBaseURL: true) else {
+        guard var urlComponents = URLComponents(url: url ?? client.baseURL, resolvingAgainstBaseURL: true) else {
             fatalError("An undetermined error occurred in url")
         }
         
