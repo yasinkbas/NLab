@@ -20,6 +20,8 @@ public class HTTPDirector<Task: URLSessionTask, Output: Decodable, Request: HTTP
     internal var onData: HTTPDataHandler<Output>?
     internal var onError: HTTPErrorHandler?
     internal var onResponse: HTTPResponseHandler?
+  
+    internal var activeRequest: Request?
     
     init(client: HTTPClient, urlRequest: URLRequest, errorMiddleware: ErrorMiddleware.Type?, decoder: JSONDecoder, options: [NLClientOption] = []) {
         self.client = client
@@ -55,7 +57,7 @@ extension HTTPDirector where Task == DataTask {
     /// starts your request with options(default)
     /// - Parameter pure: if it is true disables options, otherwise runs options before request.
     public func start(pure: Bool = false) {
-        let request = (client.defaultTask(
+        activeRequest = (client.defaultTask(
             with: urlRequest,
             options: options,
             decoder: decoder,
@@ -64,7 +66,11 @@ extension HTTPDirector where Task == DataTask {
             onData: onData,
             onResponse: onResponse
         ) as? Request)
-        request?.start(pure: pure)
+        activeRequest?.start(pure: pure)
+    }
+  
+    public func cancel() {
+        activeRequest?.cancel()
     }
     
     @available(iOS 15, *)
