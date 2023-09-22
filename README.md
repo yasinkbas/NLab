@@ -1,13 +1,12 @@
 # NLab
 
 [![CI Status](https://img.shields.io/travis/yasinkbas/NLab.svg?style=flat)](https://travis-ci.org/yasinkbas/NLab)
-[![Version](https://img.shields.io/cocoapods/v/NLab.svg?style=flat)](https://cocoapods.org/pods/NLab)
 [![License](https://img.shields.io/cocoapods/l/NLab.svg?style=flat)](https://cocoapods.org/pods/NLab)
 [![Platform](https://img.shields.io/cocoapods/p/NLab.svg?style=flat)](https://cocoapods.org/pods/NLab)
 
 ## Example
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+To run the example project, clone the repo, and just run Example project.
 
 ## Requirements
 
