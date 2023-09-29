@@ -35,8 +35,9 @@ public class HTTPRequest<Task: URLSessionTask>: HTTPRequestProtocol {
         self.options = options
     }
     
-    /** default work with options
-            parameters @pure: if true work with options else works without options
+    /** 
+    default work with options
+    parameters @pure: if true works without options else works with options
      */
     public func start(pure: Bool = false) {
         _ = pure ? nil : loadOptions()
