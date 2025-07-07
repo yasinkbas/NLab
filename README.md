@@ -59,7 +59,7 @@
 ### Swift Package Manager (Preferred)
 
 ```swift
-.package(url: "https://github.com/yasinkbas/NLab.git", from: "1.0.0")
+.package(url: "https://github.com/yasinkbas/NLab.git", from: "1.3.0")
 ```
 
 ### CocoaPods
@@ -147,10 +147,11 @@ let director = NLTaskPoint(client: client)
     .onResponse { print("Status", $0) }
     .start()
 
-// Async / Await (iOS 15+)
-if let posts = await director.startAsync() {
-    print(posts.first?.title ?? "-")
-}
+// and if you want u can use startAsync(iOS 15+) easily instead of start() without onData/onError/onResponse calls.
+ director
+    ...
+    ...
+    .startAsync()
 ```
 
 ### Middleware
