@@ -369,7 +369,7 @@ NLTaskPoint(client: customClient)
 ### 10. Extend `NLContentType`
 
 ```swift
-.content(.custom("application/x-yasin"))
+.content(.custom("application/custom"))
 ```
 
 ---
