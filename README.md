@@ -249,9 +249,9 @@ NLTaskPoint(client: client)
     .path("posts/1")
     .method(.get)
     .content(.json)
+    .onData { print($0.title) }
     .build()
     .direct()
-    .onData { print($0.title) }
     .start()
 ```
 
