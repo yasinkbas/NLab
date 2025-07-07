@@ -40,9 +40,10 @@
    10. [Logging](#logging)
 4. [Quick Start](#quick-start)
 5. [Detailed Examples](#detailed-examples)
-6. [Example Project](#example-project)
-7. [Contributing](#contributing)
-8. [License](#license)
+6. [Best Practices](#best-practices)
+7. [Example Project](#example-project)
+8. [Contributing](#contributing)
+9. [License](#license)
 
 ---
 
@@ -373,6 +374,100 @@ NLTaskPoint(client: customClient)
 
 ---
 
+## 💡 Best Practices
+
+NLab is intentionally lightweight and unopinionated, yet over time a set of idioms emerged that make codebases more predictable, testable and fun to work with. The list below is distilled from real-world projects.
+
+### 1. One `NLClient` per base URL (and environment)
+Create **exactly one** client instance per API surface (e.g. staging vs. production) and inject it where needed instead of scattering base-url strings around the codebase.
+
+```swift
+enum Environment {
+    case staging, production
+
+    var client: NLClient {
+        switch self {
+        case .staging:     return NLClient(baseURL: "https://staging.api.com")
+        case .production:   return NLClient(baseURL: "https://api.com")
+        }
+    }
+}
+```
+
+### 2. Group calls in `Endpoint` namespaces
+Instead of building the request inline in view-models, expose tiny factories that return a ready-to-start `NLTaskDirector`:
+
+```swift
+struct AuthEndpoint {
+    static func login(email: String, password: String) -> NLTaskDirector<Login.Response, Login.Request> {
+        NLTaskPoint(client: Environment.production.client)
+            .path("auth/login/")
+            .method(.post)
+            .body(Login.Request(email: email, password: password))
+            .content(.json)
+            .build().direct()
+    }
+}
+```
+
+### 3. Use Middleware for cross-cutting concerns
+*Global* behaviours such as error mapping, logging, retry or metrics belong to middleware. Keep them pure and stateless so they are easy to test.
+
+```swift
+class ErrorMapper: ErrorMiddleware {
+    static func onError(_ error: Error) -> Error {
+        guard case let HTTPError.status(code, data) = error else { return error }
+        switch code {
+        case 401: return AuthError.unauthorized
+        case 404: return APIError.notFound
+        default:  return APIError.generic(code: code, data: data)
+        }
+    }
+}
+```
+
+Attach it once to the `NLClient` *or* per `NLTaskPoint` when scoping is required.
+
+### 4. Embrace Swift Concurrency
+For iOS 15+ prefer `startAsync()` – the result is immediately *awaitable* and automatically runs on a background context.
+
+```swift
+let posts: [Post.Response] = try await NLTaskPoint(client: client)
+    .path("posts")
+    .method(.get)
+    .build().direct()
+    .startAsync()
+```
+
+### 5. Keep DTOs thin & expressive
+Split `Request` / `Response` inside a single `NLComprehensiveModel` or separate `NLRequestModel` & `NLResponseModel` as needed. They live right next to the endpoint, not buried in a generic *Models* folder.
+
+### 6. Turn recurring tweaks into `NLClientOption`s
+If you find yourself repeatedly touching `URLSessionConfiguration` or headers, wrap it in an option:
+
+```swift
+extension NLClientOption {
+    static func timeout(_ interval: TimeInterval) -> Self {
+        .custom { $0.session.configuration.timeoutIntervalForRequest = interval }
+    }
+}
+
+client.addOptions([.timeout(10)])
+```
+
+### 7. Testing strategy
+• Swap `URLSession` for a stubbed `URLProtocol` or inject a custom `HTTPClient` that returns fixtures.  
+• Keep middleware pure to unit-test error mapping in isolation.  
+• Use `Task {}` + `await` inside tests to fully leverage Swift Concurrency.
+
+```swift
+final class StubbedHTTPClient: HTTPClient, HTTPClientLogging {
+    // returns canned responses immediately
+}
+```
+
+---
+
 ## 📦 Example Project
 
 Open **`Example/Example.xcodeproj`** and run – it showcases the snippets above.
@@ -392,12 +487,6 @@ Open **`Example/Example.xcodeproj`** and run – it showcases the snippets above
 ## 📄 License
 
 NLab is released under the [MIT](LICENSE) license.
-
----
-
-## 👤 Author
-
-**Yasin Akbaş** – [@yasinkbas](https://github.com/yasinkbas)
 
 ---
 
