@@ -210,7 +210,7 @@ extension NLClientOption {
 
 ### Models
 
-A tiny set of protocols to keep your DTOs 💎-clear.
+A tiny set of protocols to keep your DTOs clear.
 
 ```swift
 struct CreatePost: NLRequestModel {
