@@ -223,12 +223,11 @@ struct Post: NLResponseModel {
 ```
 
 ### Content Types
-
+Default is **application/json** which enum case is **.json**. If you use json for content you don't have to set it.
 Change the `Content-Type` in one line:
 
 ```swift
 .content(.xml)
-.content(.custom("application/vnd.api+json"))
 ```
 
 ### Logging
@@ -249,7 +248,6 @@ let client = NLClient(baseURL: "https://jsonplaceholder.typicode.com")
 NLTaskPoint(client: client)
     .path("posts/1")
     .method(.get)
-    .content(.json)
     .onData { print($0.title) }
     .build()
     .direct()
@@ -282,7 +280,6 @@ NLTaskPoint<Login.Response, Login.Request>(client: client)
     .path("auth/login/")
     .method(.post)
     .body(Login.Request(email: "a@b.com", password: "***"))
-    .content(.json)
     .build()
     .direct()
     .onData { print("Token ->", $0.token) }
