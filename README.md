@@ -220,6 +220,13 @@ struct CreatePost: NLRequestModel {
 struct Post: NLResponseModel {
     struct Response: Decodable { let id: Int; let title, body: String }
 }
+
+// or contain both in one model
+struct Post: NLComprehensiveModel {
+   struct Request: Encodable { let title, body: String }
+   struct Response: Decodable { let id: Int; let title, body: String }
+}
+
 ```
 
 ### Content Types
