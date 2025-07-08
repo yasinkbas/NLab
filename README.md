@@ -162,7 +162,7 @@ Conform to `ErrorMiddleware` (or create your own protocols) to intercept failure
 ```swift
 class ErrorHandler: ErrorMiddleware {
     static func onError(_ error: Error) -> Error {
-        // map | log | retry…
+        // good area to map | log | retry
         print("🛑", error)
         return error
     }
