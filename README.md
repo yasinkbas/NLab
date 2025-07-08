@@ -63,7 +63,7 @@
 .package(url: "https://github.com/yasinkbas/NLab.git", from: "1.3.0")
 ```
 
-### CocoaPods
+### CocoaPods (not supported, latest version 1.1.3)
 
 ```ruby
 pod 'NLab'
