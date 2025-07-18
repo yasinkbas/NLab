@@ -478,6 +478,15 @@ Open **`Example/Example.xcodeproj`** and run – it showcases the snippets above
 
 ---
 
+## ⚒️ Paw Extension
+If you’re using RapidAPI(aka Paw), this extension makes it easy to quickly implement and create a director.
+
+[NLab-PawCodeGenerator](https://github.com/yasinkbas/NLab-PawCodeGenerator)
+
+![Paw Extension Screenshot](doc-src/paw.png)
+
+---
+
 ## 🤝 Contributing
 
 1. Fork the repo
