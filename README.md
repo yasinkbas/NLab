@@ -42,8 +42,9 @@
 5. [Detailed Examples](#detailed-examples)
 6. [Best Practices](#best-practices)
 7. [Example Project](#example-project)
-8. [Contributing](#contributing)
-9. [License](#license)
+8. [Paw Extension](#paw-extension)
+9. [Contributing](#contributing)
+10. [License](#license)
 
 ---
 
