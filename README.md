@@ -8,7 +8,7 @@
 
 ---
 
-## ✨ Features
+## Features
 
 | Category | Description |
 | -------- | ----------- |
@@ -23,7 +23,7 @@
 
 ---
 
-## 📚 Table of Contents
+## Table of Contents
 
 1. [Requirements](#requirements)
 2. [Installation](#installation)
@@ -48,7 +48,7 @@
 
 ---
 
-## 📋 Requirements
+## Requirements
 
 * Swift **5.5**+
 * iOS **11**+ / macOS **10.11**+
@@ -56,7 +56,7 @@
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### Swift Package Manager (Preferred)
 
@@ -72,7 +72,7 @@ pod 'NLab'
 
 ---
 
-## 🏛 Architecture
+## Architecture
 
 NLab is built around **five primary abstractions**:
 
@@ -244,7 +244,7 @@ Enabled by default – prints a **curl-style request** and **pretty-printed JSON
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ```swift
 struct Post: NLResponseModel {
@@ -264,7 +264,7 @@ NLTaskPoint(client: client)
 
 ---
 
-## 🧩 Detailed Examples
+## Detailed Examples
 
 ### 1. Creating a Client
 
@@ -379,7 +379,7 @@ NLTaskPoint(client: customClient)
 
 ---
 
-## 💡 Best Practices
+## Best Practices
 
 NLab is intentionally lightweight and unopinionated, yet over time a set of idioms emerged that make codebases more predictable, testable and fun to work with. The list below is distilled from real-world projects.
 
@@ -473,13 +473,13 @@ final class StubbedHTTPClient: HTTPClient, HTTPClientLogging {
 
 ---
 
-## 📦 Example Project
+## Example Project
 
 Open **`Example/Example.xcodeproj`** and run – it showcases the snippets above.
 
 ---
 
-## ⚒️ Paw Extension
+## Paw Extension
 If you’re using RapidAPI(aka Paw), this extension makes it easy to quickly implement and create a director.
 
 [NLab-PawCodeGenerator](https://github.com/yasinkbas/NLab-PawCodeGenerator)
@@ -488,7 +488,7 @@ If you’re using RapidAPI(aka Paw), this extension makes it easy to quickly imp
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repo
 2. Create a branch (`git checkout -b feature/myFeature`)
@@ -498,12 +498,12 @@ If you’re using RapidAPI(aka Paw), this extension makes it easy to quickly imp
 
 ---
 
-## 📄 License
+## License
 
 NLab is released under the [MIT](LICENSE) license.
 
 ---
 
-## 🙏 Acknowledgements
+## Acknowledgements
 
 *Inspired by modern networking libraries such as Alamofire, Moya & Apollo. Built with ❤️ in Swift.*
