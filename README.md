@@ -43,8 +43,7 @@
 6. [Best Practices](#best-practices)
 7. [Example Project](#example-project)
 8. [Paw Extension](#paw-extension)
-9. [Contributing](#contributing)
-10. [License](#license)
+9. [License](#license)
 
 ---
 
@@ -485,16 +484,6 @@ If you’re using RapidAPI(aka Paw), this extension makes it easy to quickly imp
 [NLab-PawCodeGenerator](https://github.com/yasinkbas/NLab-PawCodeGenerator)
 
 ![Paw Extension Screenshot](doc-src/paw.png)
-
----
-
-## Contributing
-
-1. Fork the repo
-2. Create a branch (`git checkout -b feature/myFeature`)
-3. Commit your changes (`git commit -m 'Add myFeature'`)
-4. Push to the branch (`git push origin feature/myFeature`)
-5. Open a Pull Request
 
 ---
 
